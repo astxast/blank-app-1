@@ -5,10 +5,14 @@ from langchain.callbacks import StreamlitCallbackHandler
 from langchain.llms import MistralAI
 from langchain.tools import DuckDuckGoSearchRun
 
+mistral_api_key = os.getenv('MISTRAL_API_KEY')
+if not mistral_api_key:
+    mistral_api_key = st.secrets.get("MISTRAL_API_KEY", None)
+    
 with st.sidebar:
-    mistral_api_key = st.text_input(
-        "Mistral AI API Key", key="langchain_search_api_key_mistral", type="password"
-    )
+    #mistral_api_key = st.text_input(
+    #    "Mistral AI API Key", key="langchain_search_api_key_mistral", type="password"
+    #)
     "[Get a Mistral AI API key](https://console.mistral.ai/)"
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/pages/2_Chat_with_search.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
