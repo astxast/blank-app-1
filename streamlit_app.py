@@ -2,6 +2,10 @@ import os
 from mistralai import Mistral
 import streamlit as st
 
+mistral_api_key = os.getenv('MISTRAL_API_KEY')
+if not mistral_api_key:
+    mistral_api_key = st.secrets.get("MISTRAL_API_KEY", None)
+        
 with st.sidebar:
     mistral_api_key = st.text_input("Mistral AI API Key", key="chatbot_api_key", type="password")
     "[Get a Mistral AI API key](https://console.mistral.ai/)"
