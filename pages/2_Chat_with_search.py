@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from langchain_mistralai import ChatMistralAI
 from langchain.agents import initialize_agent, AgentType
