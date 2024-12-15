@@ -7,7 +7,7 @@ if not mistral_api_key:
     mistral_api_key = st.secrets.get("MISTRAL_API_KEY", None)
         
 with st.sidebar:
-    mistral_api_key = st.text_input("Mistral AI API Key", key="chatbot_api_key", type="password")
+    # mistral_api_key = st.text_input("Mistral AI API Key", key="chatbot_api_key", type="password")
     "[Get a Mistral AI API key](https://console.mistral.ai/)"
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
