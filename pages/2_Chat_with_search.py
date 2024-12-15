@@ -1,16 +1,15 @@
 import streamlit as st
-from mistralai import Mistral
+from langchain_mistralai import ChatMistralAI
 from langchain.agents import initialize_agent, AgentType
 from langchain.callbacks import StreamlitCallbackHandler
-from langchain.llms import MistralAI
 from langchain.tools import DuckDuckGoSearchRun
 
 mistral_api_key = os.getenv('MISTRAL_API_KEY')
 if not mistral_api_key:
     mistral_api_key = st.secrets.get("MISTRAL_API_KEY", None)
-    
+
 with st.sidebar:
-    #mistral_api_key = st.text_input(
+    # mistral_api_key = st.text_input(
     #    "Mistral AI API Key", key="langchain_search_api_key_mistral", type="password"
     #)
     "[Get a Mistral AI API key](https://console.mistral.ai/)"
@@ -40,11 +39,8 @@ if prompt := st.chat_input(placeholder="Who won the Women's U.S. Open in 2018?")
         st.info("Please add your Mistral AI API key to continue.")
         st.stop()
 
-    # Initialize Mistral client
-    mistral_client = Mistral(api_key=mistral_api_key)
-
-    # Create a MistralAI LLM instance for LangChain
-    llm = MistralAI(mistral_client=mistral_client, model="mistral-large-latest")
+    # Create a ChatMistralAI instance for LangChain
+    llm = ChatMistralAI(mistral_api_key=mistral_api_key, model="mistral-large-latest")
 
     search = DuckDuckGoSearchRun(name="Search")
     search_agent = initialize_agent(
